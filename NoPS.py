@@ -71,6 +71,6 @@ def process_folder(input_folder, output_folder):
 def image_resizer(img1, sample):
     img1 = Image.open(img1)
     return ImageOps.fit(img1, sample.size)
-
+# hwkpppp memeeeeee
 
 main()
