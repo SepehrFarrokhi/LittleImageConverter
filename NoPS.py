@@ -43,11 +43,13 @@ def process_single(input_img, output_img):
     sample = ImageOps.fit(sample, (800,800))
     img = image_resizer(input_img, sample)
     img.paste(sample, mask=sample)
-    img.save(output_img)
+    img = img.convert("RGB")
+    img.save(output_img, "JPEG")
 
 
 def process_folder(input_folder, output_folder):
-    sample = Image.open("Sample.png")
+    sample = Image.open("Sample.png").convert("RGBA")
+    sample = ImageOps.fit(sample, (800, 800))
 
     for filename in os.listdir(input_folder):
         path = os.path.join(input_folder, filename)
@@ -62,8 +64,9 @@ def process_folder(input_folder, output_folder):
         img = image_resizer(path, sample)
         img.paste(sample, mask=sample)
 
-        out_file = os.path.join(output_folder, filename)
-        img.save(out_file)
+        out_file = os.path.join(output_folder, filename[:len(filename)-len(ext)-1]+".jpg")
+        img = img.convert("RGB")
+        img.save(out_file, "JPEG")
 
     print("Done processing folder.")
 
