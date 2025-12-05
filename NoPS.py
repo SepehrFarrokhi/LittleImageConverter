@@ -76,4 +76,5 @@ def image_resizer(img1, sample):
     return ImageOps.fit(img1, sample.size)
 # hwkpppp memeeeeee
 
-main()
+if __name__ == "__main__":
+    main()
